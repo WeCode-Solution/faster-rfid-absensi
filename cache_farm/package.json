@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "lint": "ts-standard"
+    "lint": "ts-standard",
+    "lint:fix": "ts-standard --fix"
   },
   "ts-standard": {
       "project": "./tsconfig.json"
