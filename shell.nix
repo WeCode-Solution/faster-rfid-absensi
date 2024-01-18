@@ -14,5 +14,7 @@ pkgs.mkShell rec {
     fi
     echo "[HOOK] Set dotnet root"
     export DOTNET_ROOT=${dotnet_root}
+    echo "[HOOK] Done!"
+    cd ..
   '';
 }
