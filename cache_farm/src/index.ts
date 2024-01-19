@@ -2,7 +2,6 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import Router from './Router'
 import Service from './Service'
-import 'dotenv/config'
 
 const application = async (): Promise<void> => {
   const app = new Hono()
