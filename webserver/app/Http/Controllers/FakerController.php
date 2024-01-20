@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 
+
 class FakerController extends Controller
 {
     public function create_faker(Request $request)
     {
-        for ($i = 0; $i < 50; $i++) {
+        $numberOfData = $request->input('generate', 50); // Default to 50 if not provided
+
+        for ($i = 0; $i < $numberOfData; $i++) {
             $name = fake()->name();
 
             $employee = new Employee([
@@ -18,6 +21,6 @@ class FakerController extends Controller
             ]);
             $employee->save();
         }
-        return response()->json(['data' => 'done!']);
+        return redirect('/');
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FakerController;
+use App\Http\Controllers\AbsensiView;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [AbsensiView::class, 'absen']);
 
-Route::get('/', function () {
-    return view('Dashboard');
-});
+Route::post('/generate-data', [FakerController::class, 'create_faker'])->name('generate.data');
