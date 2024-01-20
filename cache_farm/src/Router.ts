@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { Services, TServices } from './Service'
+import { TServices } from './Service'
 import IndexController from './Controllers/Index'
 import AttendanceController from './Controllers/Attendance'
 
