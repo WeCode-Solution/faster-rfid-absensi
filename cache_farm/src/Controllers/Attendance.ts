@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { TServices } from '../Service'
 import { zValidator } from '@hono/zod-validator'
-import { Encrypt, Decrypt } from './Functions/Attendance'
+import { Encrypt } from './Functions/Attendance'
 import { z } from 'zod'
 import Response from '../App/Response'
 import Controller from '../App/Controller'
