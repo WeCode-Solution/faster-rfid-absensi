@@ -1,4 +1,4 @@
-import { Context, Hono } from 'hono'
+import { Hono } from 'hono'
 import Response from '../App/Response'
 import Controller from '../App/Controller'
 

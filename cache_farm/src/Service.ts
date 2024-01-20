@@ -24,7 +24,11 @@ export const Services = async () => {
     process.env.MARIADB_PASS ?? '',
     {
       dialect: 'mariadb',
-      host: process.env.MARIADB_HOST ?? 'localhost'
+      host: process.env.MARIADB_HOST ?? 'localhost',
+      define: {
+        freezeTableName: true,
+        underscored: true
+      }
     }
   )
   await SQLClient.authenticate()
