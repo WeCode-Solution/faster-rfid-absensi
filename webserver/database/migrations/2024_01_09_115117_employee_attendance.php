@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('employee_attendance', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employee')->onDelete('cascade');   // Specify the desired delete action
-            $table->timestamp('absence_timestamp');
+            $table->timestamp('recorded_at');
             $table->timestamps();
         });
           }

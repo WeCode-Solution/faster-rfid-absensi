@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
+{
+    use HasFactory;
+    protected $table = 'employee';
 
+    protected $fillable = ['full_name', 'nick_name'];
+
+    public function attendances()
     {
-        use HasFactory;
-    
-        protected $fillable = ['full_name', 'nick_name'];
-    
-        public function attendances()
-        {
-            return $this->belongsToMany(EmployeeAttendance::class);
-        }
+        return $this->belongsToMany(EmployeeAttendance::class);
     }
+}
