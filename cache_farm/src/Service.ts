@@ -1,5 +1,6 @@
 import * as Redis from 'redis'
 import { Sequelize } from 'sequelize'
+import { Models as Model } from './Model'
 import 'dotenv/config'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -24,11 +25,13 @@ export default async function () {
       host: process.env.MARIADB_HOST ?? 'localhost'
     }
   )
-
   await SQLClient.authenticate()
   console.log('MariaDB connected successfully!')
 
+  const Models = Model(SQLClient)
+
   return {
-    Redis: await RedisClient.connect()
+    Redis: await RedisClient.connect(),
+    SQL: Models
   }
 }
