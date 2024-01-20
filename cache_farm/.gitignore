@@ -1,12 +1,3 @@
-.env
-.env.deploy
+node_modules
 .vimsession
-.vs
-
-# Generated project files by .NET
-**/obj/**
-**/bin/**
-**/Properties/**
-
-# Development Generated Data
-.devel-data/
+.env
