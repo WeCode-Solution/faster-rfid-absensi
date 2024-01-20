@@ -1,11 +1,11 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import Router from './Router'
-import Service from './Service'
+import { Services } from './Service'
 
 const application = async (): Promise<void> => {
   const app = new Hono()
-  const service = await Service()
+  const service = await Services()
   Router(app, service)
 
   const port = 3000

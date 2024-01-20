@@ -3,8 +3,10 @@ import { Sequelize } from 'sequelize'
 import { Models as Model } from './Model'
 import 'dotenv/config'
 
+export type TServices = Awaited<ReturnType<typeof Services>>
+
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export default async function () {
+export const Services = async () => {
   // Redis
   const RedisClient = Redis.createClient({
     url: `redis://${process.env.REDIS_HOST ?? 'localhost'}:${process.env.REDIS_PORT ?? 6379}`,
