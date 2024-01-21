@@ -10,14 +10,18 @@ const AESCounter = (): ModeOfOperation.ModeOfOperationCTR =>
     )
   )
 
-export const Encrypt = (txt: string): string => {
-  const textBytes = utils.utf8.toBytes(txt)
+export const Encrypt = (data: {}): string => {
+  const textBytes = utils.utf8.toBytes(JSON.stringify(data))
   const encrypted = AESCounter().encrypt(textBytes)
   return utils.hex.fromBytes(encrypted)
 }
 
-export const Decrypt = (hex: string): string => {
+export const Decrypt = (hex: string): {} | undefined => {
   const textBytes = utils.hex.toBytes(hex)
-  const encrypted = AESCounter().encrypt(textBytes)
-  return utils.utf8.fromBytes(encrypted)
+  try {
+    const encrypted = AESCounter().encrypt(textBytes)
+    return JSON.parse(utils.utf8.fromBytes(encrypted))
+  } catch (e) {
+    return undefined
+  }
 }

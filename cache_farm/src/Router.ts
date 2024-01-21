@@ -6,6 +6,5 @@ import AttendanceController from './Controllers/Attendance'
 export default function (app: Hono, service: TServices): void {
   IndexController.Get('/', app)
   AttendanceController.GenerateAttendanceCard('/generate', app, service)
-
-  //app.post('/attendance', (c) => AttendanceController.ExecuteAttendance(c, service))
+  AttendanceController.HitAttendance('/attendance', app, service)
 }
