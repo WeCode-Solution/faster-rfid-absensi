@@ -23,4 +23,14 @@ class FakerController extends Controller
         }
         return redirect('/');
     }
+
+    public function input_attendance(Request $request)
+    {
+        $data = [
+            'id' => $request->input('id'),
+            'recorded_at' => $request->input('recorded_at')
+        ];
+
+        return response()->json($data);
+    }
 }

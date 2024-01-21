@@ -15,4 +15,5 @@ use App\Http\Controllers\AbsensiView;
 */
 Route::get('/', [AbsensiView::class, 'absen']);
 
-Route::post('/generate-data', [FakerController::class, 'create_faker'])->name('generate.data');
+Route::post('/generate/card', [FakerController::class, 'create_faker'])->name('generate.card');
+Route::post('/generate/user', [FakerController::class, 'create_faker'])->name('generate.data');
