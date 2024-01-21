@@ -10,7 +10,10 @@ import Controller from '../App/Controller'
 interface CardInformation {
   id: number
   nickName: string
-  encrypt?: string
+}
+
+interface Card extends CardInformation {
+  recordedAt: Date
 }
 
 export default class Attendance extends Controller {
@@ -54,13 +57,14 @@ export default class Attendance extends Controller {
       // Hono<Context<Env, 'json', { data }>>
       async c => {
         const { data } = c.req.valid('json')
-        const decrypt = Decrypt(data) as CardInformation | undefined
-        if (!decrypt)
+        const decrypted = Decrypt(data) as Card | undefined
+        if (!decrypted)
           return c.json(Response('Invalid data!'), 401)
+        decrypted.recordedAt = new Date()
 
-        // TODO: Tambah redis di sini
+        await service.Redis.set(`user:${decrypted.id}`, decrypted.recordedAt.toISOString())
 
-        return c.json(Response('Ok', decrypt))
+        return c.json(Response('Ok', decrypted))
       }
     )
   }
