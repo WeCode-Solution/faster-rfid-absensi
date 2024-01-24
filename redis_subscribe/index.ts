@@ -45,10 +45,16 @@ import 'dotenv/config'
   console.log('MariaDB connected successfully!')
 
   console.log('Waiting for data')
-  RedisSubClient.pSubscribe('__key*user:*', (msg: string, channel: string) => {
+  RedisSubClient.pSubscribe('__key*user:*', async (msg: string, channel: string) => {
     if (msg !== 'set') return
-    channel = channel.split(':').slice(1).join(':')
-    console.log(`${channel}`)
+    const key = channel.split(':').slice(1).join(':')
+
+    const val = await RedisClient.get(key)
+    if (!val) return
+
+    const del = await RedisClient.del(key)
+    if (del === 0) return
+    console.log(`${key} : ${val}`)
   })
 
   Process.stdin.resume()
