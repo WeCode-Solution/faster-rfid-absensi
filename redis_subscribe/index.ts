@@ -55,6 +55,13 @@ import 'dotenv/config'
     const del = await RedisClient.del(key)
     if (del === 0) return
     console.log(`${key} : ${val}`)
+
+    await Models.EmployeeAttendance.create({
+      employeeId: parseInt(key.split(':')[1]),
+      recordedAt: new Date(val),
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
   })
 
   Process.stdin.resume()
