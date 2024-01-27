@@ -1,6 +1,7 @@
 """ Brutal testing chamber """
-from multiprocessing import Process
+from multiprocessing import Pool
 from timeit import default_timer
+from os import getpid
 import requests
 import numpy as np
 from decouple import config
@@ -18,6 +19,8 @@ database_data = requests.post(
 print(f"Get {len(database_data)} data")
 
 def loop_data(data):
+    """ Looping data all the way """
+    print(f'Spawning thread (pid {getpid()})')
     for _, val in enumerate(data):
         hashed = val.get('encrypt')
         requests.post(
@@ -33,10 +36,7 @@ start_sending_data = default_timer()
 database_data = np.array(database_data)
 database_data = np.array_split(database_data, THREAD_COUNT)
 print(len(database_data))
-processes = [Process(target=loop_data(datas)) for _, datas in enumerate(database_data)]
-for r in processes:
-    r.start()
-for r in processes:
-    r.join()
+with Pool() as pool:
+    pool.map(loop_data, database_data)
 
 print(f'Done on {default_timer() - start_sending_data} seconds!')
