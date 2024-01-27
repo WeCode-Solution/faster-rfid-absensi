@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
-
+use App\Models\EmployeeAttendance;
 
 class FakerController extends Controller
 {
@@ -27,9 +27,12 @@ class FakerController extends Controller
     public function input_attendance(Request $request)
     {
         $data = [
-            'id' => $request->input('id'),
+            'employee_id' => $request->input('id'),
             'recorded_at' => $request->input('recorded_at')
         ];
+
+        $employee = new EmployeeAttendance($data);
+        $employee->save();
 
         return response()->json($data);
     }
