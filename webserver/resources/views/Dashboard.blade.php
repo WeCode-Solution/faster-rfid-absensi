@@ -12,7 +12,7 @@
 </div>
 <div class="content-wrapper">
     <center><h1>Employee Attendance Data</h1></center>
-    
+
     <table class="table">
         <thead>
             <tr>
@@ -24,10 +24,13 @@
         </thead>
         <tbody>
             @foreach($attendanceData as $attendance)
+                <?php
+                $employee = $attendance->employees()->first();
+                ?>
                 <tr>
-                    <td>{{ $attendance->employee->id }}</td>
-                    <td>{{ $attendance->employee->full_name }}</td>
-                    <td>{{ $attendance->employee->nick_name }}</td>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->full_name }}</td>
+                    <td>{{ $employee->nick_name }}</td>
                     <td>{{ $attendance->recorded_at }}</td>
                 </tr>
             @endforeach
