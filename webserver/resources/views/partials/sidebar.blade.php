@@ -2,8 +2,8 @@
     <!-- Brand Logo -->
 
     <a href="home" class="brand-link">
-      <img src="logo.png" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Perpustakaan </span>
+      <img src="logo.png" alt="logo" class="brand-image" style="opacity: .8">
+      <span class="brand-text font-weight-light">RFID</span>
     </a>
 
 
@@ -18,8 +18,8 @@
         
         <div class="info">
             
-            <img src="logo_member.png" alt="logo_member" class="brand-image img-circle elevation-3" style="opacity: .8">
-          {{-- <span class="brand-text text-light pl-2"> {{auth()->user()->username}} </span> --}}
+            <img src="logo.png" alt="logo_member" class="brand-image img-square elevation-3" style="opacity: .8"> 
+          <span class="brand-text text-light pl-2"> User </span>
         </div>
       </div>
 
